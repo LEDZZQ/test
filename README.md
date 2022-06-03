@@ -1,2 +1,2 @@
 # test
-This is description
+This is s test repository for LEDZZQ's video.
