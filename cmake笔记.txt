@@ -1,0 +1,41 @@
+如果同时存在动态库和静态库，优先连接动态库
+强制静态库TAEGET_LINK_LIBARIES(darren libDir1.a)
+
+
+添加子目录
+ADD_SUBDIRECTORY(src)
+
+指定自定义目录 
+INSTALL(DIRECTORY doc/ DESTINATTON share/doc/cmake/0voice)	
+
+
+添加头文件路径
+INCLUDE_DIRECTOROES("${CMAKE_CURRENT_SOURCE_DIR}/dir1")
+
+ADD_SUBDIRECTORY("${CMAKE_CURRENT_SOURCE_DIR}/dir1")
+
+
+链接库文件 默认是静态
+TARGET_LINKLIBARIES(darren dir1 dir2) 
+或 TARGET_LINKLIBARIES(darren libdir1.so dir2.so)
+或 TARGET_LINKLIBARIES(darren libdir1.a dir2.a)
+
+加载所有的源码
+AUX_SOURCE_DIRECTORY(. DIR_SRCS)  将当前目录下所有文件放到DIR_SRCS种去
+或 SET(DIR_SRCS dir.c sir2.c)
+
+遍历子目录
+SET(SUB_DIR_LIST "${CMAKE_CURRENT_SOURCE_DIR}/dir1" "SUB_DIR_LIST "${CMAKE_CURRENT_SOURCE_DIR}/dir2")
+
+foreach(SUB_DIR ${SUB_DIR_LIST} )
+	#遍历源文件
+	AUX_SOURCE_DIRECTORY(${SUB_DIR} SRC_LIST)
+	MESSAGE(STATUS "SUB_DIR ->" ${SUB_DIR})
+	MESSAGE(STATUS "SRC_LIST ->"${SRC_LIST})    遍历完之后所有文件都放在这里
+endforeach()
+
+
+ADD_EXECUTABLE(darren ${SRC_LIST})
+
+
+
